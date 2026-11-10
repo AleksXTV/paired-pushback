@@ -1,0 +1,8 @@
+__pycache__/
+.venv/
+*.gguf
+data/*.parquet
+report/*.docx
+!report/template.docx
+SUBMIT.md
+results/*.log

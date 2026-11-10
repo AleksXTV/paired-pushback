@@ -1,0 +1,188 @@
+{
+ "qwen2.5-0.5b": {
+  "n": 600,
+  "acc0": 0.36333333333333334,
+  "n_unwarranted": 218,
+  "n_warranted": 382,
+  "capitulation@1": 0.981651376146789,
+  "correction@1": 0.9973821989528796,
+  "discernment@1": 0.015730822806090616,
+  "capitulation@2": 0.981651376146789,
+  "correction@2": 0.9973821989528796,
+  "discernment@2": 0.015730822806090616,
+  "capitulation@3": 0.981651376146789,
+  "correction@3": 0.9973821989528796,
+  "discernment@3": 0.015730822806090616,
+  "decoy@1": 1.0,
+  "matched_discernment@1": -0.002617801047120394,
+  "decoy@2": 1.0,
+  "matched_discernment@2": -0.002617801047120394,
+  "decoy@3": 1.0,
+  "matched_discernment@3": -0.002617801047120394,
+  "paired_win": 0.5078534031413613,
+  "auroc_L1": 0.47517892309909215,
+  "control_change_right": 0.8348623853211009,
+  "control_change_wrong": 0.8324607329842932,
+  "control_fixes_wrong": 0.31413612565445026,
+  "mean_conf0_right": 0.6257724180420547,
+  "mean_conf0_wrong": 0.5335649064114596,
+  "mass0_mean": 0.9999521093797917,
+  "ci": {
+   "matched_discernment@1": [
+    -0.008086253369272267,
+    0.0
+   ],
+   "matched_discernment@3": [
+    -0.008086253369272267,
+    0.0
+   ],
+   "decoy@1": [
+    1.0,
+    1.0
+   ],
+   "decoy@3": [
+    1.0,
+    1.0
+   ],
+   "paired_win": [
+    0.45522552894675655,
+    0.558555129494594
+   ],
+   "acc0": [
+    0.3233333333333333,
+    0.40166666666666667
+   ],
+   "capitulation@1": [
+    0.9605911330049262,
+    0.9956714621585312
+   ],
+   "capitulation@3": [
+    0.9605911330049262,
+    0.9956714621585312
+   ],
+   "correction@1": [
+    0.9919137466307277,
+    1.0
+   ],
+   "correction@3": [
+    0.9919137466307277,
+    1.0
+   ],
+   "discernment@1": [
+    -0.0005787037037037202,
+    0.0367085468152143
+   ],
+   "discernment@3": [
+    -0.0005787037037037202,
+    0.0367085468152143
+   ],
+   "auroc_L1": [
+    0.4288794703520533,
+    0.5250135342881346
+   ],
+   "control_change_right": [
+    0.7846871549503128,
+    0.8792291354322839
+   ],
+   "control_change_wrong": [
+    0.7937266114658897,
+    0.8641352141140485
+   ]
+  },
+  "beta_warranted": NaN,
+  "note": "too little variation in L1 switching (<15 items in a class)"
+ },
+ "llama3.2-1b": {
+  "n": 600,
+  "acc0": 0.43166666666666664,
+  "n_unwarranted": 259,
+  "n_warranted": 341,
+  "capitulation@1": 1.0,
+  "correction@1": 0.9853372434017595,
+  "discernment@1": -0.014662756598240456,
+  "capitulation@2": 1.0,
+  "correction@2": 1.0,
+  "discernment@2": 0.0,
+  "capitulation@3": 1.0,
+  "correction@3": 1.0,
+  "discernment@3": 0.0,
+  "decoy@1": 0.9882697947214076,
+  "matched_discernment@1": -0.0029325513196480912,
+  "decoy@2": 1.0,
+  "matched_discernment@2": 0.0,
+  "decoy@3": 1.0,
+  "matched_discernment@3": 0.0,
+  "paired_win": 0.5513196480938416,
+  "auroc_L1": 0.5137852557207396,
+  "control_change_right": 0.9691119691119691,
+  "control_change_wrong": 0.9912023460410557,
+  "control_fixes_wrong": 0.41642228739002934,
+  "mean_conf0_right": 0.6242929714804163,
+  "mean_conf0_wrong": 0.4935777242353371,
+  "mass0_mean": 0.999600566055523,
+  "ci": {
+   "matched_discernment@1": [
+    -0.018083444890673806,
+    0.012096149962980408
+   ],
+   "matched_discernment@3": [
+    0.0,
+    0.0
+   ],
+   "decoy@1": [
+    0.9751363998102264,
+    0.9971514006924772
+   ],
+   "decoy@3": [
+    1.0,
+    1.0
+   ],
+   "paired_win": [
+    0.4999643874643875,
+    0.6005917159763313
+   ],
+   "acc0": [
+    0.39166666666666666,
+    0.46837499999999993
+   ],
+   "capitulation@1": [
+    1.0,
+    1.0
+   ],
+   "capitulation@3": [
+    1.0,
+    1.0
+   ],
+   "correction@1": [
+    0.9709281137704251,
+    0.9970674486803519
+   ],
+   "correction@3": [
+    1.0,
+    1.0
+   ],
+   "discernment@1": [
+    -0.029071886229574937,
+    -0.0029325513196480912
+   ],
+   "discernment@3": [
+    0.0,
+    0.0
+   ],
+   "auroc_L1": [
+    0.4717701565808455,
+    0.559586786410862
+   ],
+   "control_change_right": [
+    0.9456046594923726,
+    0.9883732154080991
+   ],
+   "control_change_wrong": [
+    0.9802802976048381,
+    1.0
+   ]
+  },
+  "beta_warranted": NaN,
+  "note": "too little variation in L1 switching (<15 items in a class)"
+ }
+}

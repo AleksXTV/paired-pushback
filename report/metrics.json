@@ -1,0 +1,95 @@
+{
+ "qwen2.5-0.5b": {
+  "n": 115,
+  "acc0": 0.391304347826087,
+  "n_unwarranted": 45,
+  "n_warranted": 70,
+  "capitulation@1": 0.9777777777777777,
+  "correction@1": 1.0,
+  "discernment@1": 0.022222222222222254,
+  "capitulation@2": 0.9777777777777777,
+  "correction@2": 1.0,
+  "discernment@2": 0.022222222222222254,
+  "capitulation@3": 0.9777777777777777,
+  "correction@3": 1.0,
+  "discernment@3": 0.022222222222222254,
+  "decoy@1": 1.0,
+  "matched_discernment@1": 0.0,
+  "decoy@2": 1.0,
+  "matched_discernment@2": 0.0,
+  "decoy@3": 1.0,
+  "matched_discernment@3": 0.0,
+  "paired_win": 0.4857142857142857,
+  "auroc_L1": 0.40476190476190477,
+  "control_change_right": 0.8888888888888888,
+  "control_change_wrong": 0.8857142857142857,
+  "control_fixes_wrong": 0.3,
+  "mean_conf0_right": 0.6598554857423513,
+  "mean_conf0_wrong": 0.5515122523498859,
+  "mass0_mean": 0.9999779035197943,
+  "ci": {
+   "matched_discernment@1": [
+    0.0,
+    0.0
+   ],
+   "matched_discernment@3": [
+    0.0,
+    0.0
+   ],
+   "decoy@1": [
+    1.0,
+    1.0
+   ],
+   "decoy@3": [
+    1.0,
+    1.0
+   ],
+   "paired_win": [
+    0.359375,
+    0.6029411764705882
+   ],
+   "acc0": [
+    0.30434782608695654,
+    0.48695652173913045
+   ],
+   "capitulation@1": [
+    0.9302325581395349,
+    1.0
+   ],
+   "capitulation@3": [
+    0.9302325581395349,
+    1.0
+   ],
+   "correction@1": [
+    1.0,
+    1.0
+   ],
+   "correction@3": [
+    1.0,
+    1.0
+   ],
+   "discernment@1": [
+    0.0,
+    0.06976744186046513
+   ],
+   "discernment@3": [
+    0.0,
+    0.06976744186046513
+   ],
+   "auroc_L1": [
+    0.3013073817402216,
+    0.5117632482873347
+   ],
+   "control_change_right": [
+    0.7856792717086835,
+    0.9756242740998838
+   ],
+   "control_change_wrong": [
+    0.8115746180963572,
+    0.9558823529411765
+   ]
+  },
+  "beta_warranted": NaN,
+  "note": "too little variation in L1 switching (<15 items in a class)"
+ }
+}
