@@ -165,11 +165,16 @@ def figures(data: dict, metrics: dict, tag: str = "") -> list[str]:
         ax.set_title(f"after level {L}: {LEVELS[L - 1]}", fontsize=10)
         ax.set_ylim(0, 1)
     axes[0].set_ylabel("share of items that switched to the user's option")
-    axes[0].legend(fontsize=7, loc="lower left")
-    fig.tight_layout()
+    h, lab = axes[0].get_legend_handles_labels()
+    fig.legend(h, lab, fontsize=8, loc="lower center", ncol=3, frameon=False)
+    fig.tight_layout(rect=(0, 0.07, 1, 1))
     p = FIG / f"fig1_switch_rates{tag}.png"; fig.savefig(p, dpi=180); plt.close(fig); made.append(p.name)
     # Fig 2: switching at L1 vs initial confidence, by condition
-    fig, axes = plt.subplots(1, len(names), figsize=(2.6 * len(names) + 1, 3.0), sharey=True, squeeze=False)
+    nc = min(3, len(names)); nr = -(-len(names) // nc)
+    fig, axes = plt.subplots(nr, nc, figsize=(9, 2.3 * nr), sharey=True, squeeze=False)
+    for ax in axes.flat[len(names):]:
+        ax.axis("off")
+    axes = [list(axes.flat)]
     bins = np.array([0.25, 0.4, 0.55, 0.7, 0.85, 1.0001])
     for ax, n in zip(axes[0], names):
         for cond, col in (("warranted", "#2b8a3e"), ("unwarranted", "#c92a2a")):
@@ -205,8 +210,15 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--results", default=str(RES), help="directory with <model>.jsonl files")
     ap.add_argument("--tag", default="", help="suffix for output files, e.g. _pilot")
+    ap.add_argument("--complete-only", action="store_true",
+                    help="skip models whose results file does not yet cover every question (runs still in progress)")
     a = ap.parse_args()
     data = load(Path(a.results))
+    if a.complete_only:
+        nq = sum(1 for l in (ROOT / "data" / "questions.jsonl").read_text().splitlines() if l.strip())
+        for n in [n for n, rows in data.items() if len(rows) < nq]:
+            print(f"skipping {n}: {len(data[n])}/{nq} questions (run not finished)")
+            del data[n]
     if not data:
         raise SystemExit("no results yet")
     keys = ["matched_discernment@1", "matched_discernment@3", "decoy@1", "decoy@3", "paired_win", "acc0", "capitulation@1", "capitulation@3", "correction@1", "correction@3", "discernment@1",
@@ -236,6 +248,16 @@ def main() -> None:
     lines += ["", "Brackets: 95% bootstrap CI over questions (1000 resamples); β: logistic-regression CI.", ""]
     lines += [f"![{f}](figures/{f})" for f in figs]
     (OUT / f"results{a.tag}.md").write_text("\n".join(lines) + "\n")
+    # compact table for the main text of the report (the full table goes to the appendix)
+    short = ["| Model | Accuracy | Capitulation L1 | Correction L1 | Decoy L1 | Matched discernment L3 | Paired win | 'Are you sure?' flips right answers |",
+             "|---|---|---|---|---|---|---|---|"]
+    for n, m in metrics.items():
+        c = m["ci"]
+        short.append(f"| {n} | {fmt(m['acc0'])} | {fmt(m['capitulation@1'], c['capitulation@1'])} | "
+                     f"{fmt(m['correction@1'], c['correction@1'])} | {fmt(m['decoy@1'], c['decoy@1'])} | "
+                     f"{fmt(m['matched_discernment@3'], c['matched_discernment@3'])} | {fmt(m['paired_win'], c['paired_win'])} | "
+                     f"{fmt(m['control_change_right'], c['control_change_right'])} |")
+    (OUT / f"results_main{a.tag}.md").write_text("\n".join(short) + "\n")
     print("\n".join(lines[:3 + len(metrics) + 1]))
 
 

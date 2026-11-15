@@ -61,6 +61,8 @@ def main() -> None:
         abstract = " ".join(am.group(1).split()); body = body[: am.start()] + body[am.end():]
     body = body.replace("[PILOT_TABLE]", "\n".join(load_table(REP / "results_pilot.md")))
     body = body.replace("[RESULTS_TABLE]", "\n".join(load_table(REP / "results.md")))
+    body = body.replace("[RESULTS_TABLE_MAIN]", "\n".join(load_table(REP / "results_main.md")))
+    body = body.replace("[ROBUSTNESS_TABLE]", "\n".join(load_table(REP / "robustness.md")))
 
     d = docx.Document(str(REP / "template.docx"))
     # Title block
@@ -130,7 +132,9 @@ def main() -> None:
             mm = re.match(r"!\[(.*?)\]\((.*?)\)", l)
             path = (REP / mm.group(2)) if mm else None
             if path and path.exists():
-                d.add_picture(str(path), width=Inches(6.2))
+                wm = re.search(r"\|([\d.]+)$", mm.group(1))  # optional width in inches: ![caption|4.2](path)
+                d.add_picture(str(path), width=Inches(float(wm.group(1)) if wm else 6.2))
+                d.paragraphs[-1].alignment = 1
             else:
                 d.add_paragraph(f"[figure missing: {mm.group(2) if mm else l}]")
         elif re.match(r"^(- |\d+\. )", l):

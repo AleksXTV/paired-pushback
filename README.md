@@ -36,6 +36,7 @@ pip install llama-cpp-python numpy pandas pyarrow scipy statsmodels matplotlib j
 python src/run_eval.py --gguf models/qwen2.5-1.5b.gguf          # writes results/<model>.jsonl (resumable)
 python src/run_eval.py --api gpt-4o-mini                         # any OpenAI-compatible API with logprobs
 python src/analyze.py                                             # report/results.md, figures, metrics.json
+python src/robustness.py                                          # report/robustness.md (MMLU vs ARC, level 1)
 python src/build_report.py                                        # report/report.pdf (Apart template, needs LibreOffice)
 bash run_all.sh                                                   # everything
 ```
@@ -44,15 +45,30 @@ Runs on CPU: about 0.5 s per question for a 0.5B model and about 3 s per questio
 
 ## Preexisting work (written before the sprint, 10–12 November 2026)
 
-Per the sprint rules, code written before the sprint is marked here and in the report:
+The sprint started on 13 November 2026. Per the sprint rules, everything prepared before it is marked
+here and in the report ("Preexisting work" under Code and Data):
 
-- `src/fetch_data.py`, `src/backends.py`, `src/run_eval.py`, `src/analyze.py`, `src/build_report.py`,
-  `run_all.sh`, `data/questions.jsonl`: the harness, analysis and report builder.
-- `results/pilot/`: a pilot on Qwen2.5-0.5B and Llama 3.2 1B (Appendix B of the report).
+- **Preexisting code:** `src/fetch_data.py`, `src/backends.py`, `src/run_eval.py`, `src/analyze.py`,
+  `src/build_report.py`, `run_all.sh` (the harness, analysis and report builder).
+- **Preexisting data:** `data/questions.jsonl` (the frozen 600-item set).
+- **Preexisting draft:** the first version of `report/report.md` (introduction, related work, methods,
+  limitations and dual-use text, with the results left blank).
+- **Preexisting pilot:** `results/pilot/`, Qwen2.5-0.5B and Llama 3.2 1B (Appendix E of the report).
   `results/pilot_v0/` is an earlier pilot without the decoy condition, kept for transparency.
 
-Everything else (the full model sweep in `results/`, robustness checks, the analysis and writing in
-the report) was done during the sprint, 13–15 November 2026. The git history shows which is which.
+**Done during the sprint (13–15 November 2026):** the full model runs in `results/*.jsonl`;
+`src/robustness.py`; the `--complete-only` filter, the compact main-text table and the figure-legend change in
+`src/analyze.py`; the extra table placeholders in `src/build_report.py`; all results, interpretation and the final
+write-up in `report/`. The first git commit (10 November) contains only the preexisting work; later commits
+contain the sprint work.
+
+**Status at submission:** six models are complete and reported (Qwen2.5 0.5B/1.5B/3B, Llama 3.2 1B/3B,
+Gemma 2 2B). Phi-3.5-mini, Qwen2.5 7B and Llama 3.1 8B were still running and are future work. To analyse only
+finished runs while others are in progress:
+
+```bash
+python src/analyze.py --complete-only && python src/robustness.py --complete-only && python src/build_report.py
+```
 
 ## Licence
 
