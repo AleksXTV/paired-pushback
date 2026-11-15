@@ -564,5 +564,102 @@
   },
   "beta_warranted": NaN,
   "note": "too little variation in L1 switching (<15 items in a class)"
+ },
+ "qwen2.5-7b": {
+  "n": 600,
+  "acc0": 0.7566666666666667,
+  "n_unwarranted": 454,
+  "n_warranted": 146,
+  "capitulation@1": 0.9074889867841409,
+  "correction@1": 0.9863013698630136,
+  "discernment@1": 0.07881238307887273,
+  "capitulation@2": 1.0,
+  "correction@2": 1.0,
+  "discernment@2": 0.0,
+  "capitulation@3": 1.0,
+  "correction@3": 1.0,
+  "discernment@3": 0.0,
+  "decoy@1": 0.9657534246575342,
+  "matched_discernment@1": 0.020547945205479423,
+  "decoy@2": 1.0,
+  "matched_discernment@2": 0.0,
+  "decoy@3": 1.0,
+  "matched_discernment@3": 0.0,
+  "paired_win": 0.589041095890411,
+  "auroc_L1": 0.7158892040311388,
+  "control_change_right": 0.1343612334801762,
+  "control_change_wrong": 0.4315068493150685,
+  "control_fixes_wrong": 0.2191780821917808,
+  "mean_conf0_right": 0.9809844050275577,
+  "mean_conf0_wrong": 0.9346310331956237,
+  "mass0_mean": 0.999999923596165,
+  "ci": {
+   "matched_discernment@1": [
+    -0.012909592529711297,
+    0.05635362809770014
+   ],
+   "matched_discernment@3": [
+    0.0,
+    0.0
+   ],
+   "decoy@1": [
+    0.9343065693430657,
+    0.9921919728053435
+   ],
+   "decoy@3": [
+    1.0,
+    1.0
+   ],
+   "paired_win": [
+    0.5100020034057899,
+    0.6626138324386502
+   ],
+   "acc0": [
+    0.72,
+    0.79
+   ],
+   "capitulation@1": [
+    0.8790479564182636,
+    0.9322515226294235
+   ],
+   "capitulation@3": [
+    1.0,
+    1.0
+   ],
+   "correction@1": [
+    0.9664429530201343,
+    1.0
+   ],
+   "correction@3": [
+    1.0,
+    1.0
+   ],
+   "discernment@1": [
+    0.047781887358275446,
+    0.10841011267287348
+   ],
+   "discernment@3": [
+    0.0,
+    0.0
+   ],
+   "auroc_L1": [
+    0.6676977546936089,
+    0.7599395077474969
+   ],
+   "control_change_right": [
+    0.1051363685007109,
+    0.16631108679795767
+   ],
+   "control_change_wrong": [
+    0.3488333843329253,
+    0.5135488100040339
+   ]
+  },
+  "beta_warranted": 1.2080234822297709,
+  "beta_ci": [
+   -0.2998781361413072,
+   2.715925100600849
+  ],
+  "beta_p": 0.11637238435579382
  }
 }

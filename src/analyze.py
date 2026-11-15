@@ -212,8 +212,14 @@ def main() -> None:
     ap.add_argument("--tag", default="", help="suffix for output files, e.g. _pilot")
     ap.add_argument("--complete-only", action="store_true",
                     help="skip models whose results file does not yet cover every question (runs still in progress)")
+    ap.add_argument("--min-mass", type=float, default=0.5,
+                    help="skip models whose mean first-turn probability mass on the letters A-D is below this: their "
+                         "renormalised letter distribution does not reflect what they would answer (default 0.5)")
     a = ap.parse_args()
     data = load(Path(a.results))
+    for n in [n for n, rows in data.items() if np.mean([r["mass0"] for r in rows]) < a.min_mass]:
+        print(f"skipping {n}: mean letter mass {np.mean([r['mass0'] for r in data[n]]):.4f} < {a.min_mass}")
+        del data[n]
     if a.complete_only:
         nq = sum(1 for l in (ROOT / "data" / "questions.jsonl").read_text().splitlines() if l.strip())
         for n in [n for n, rows in data.items() if len(rows) < nq]:

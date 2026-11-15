@@ -57,14 +57,15 @@ here and in the report ("Preexisting work" under Code and Data):
   `results/pilot_v0/` is an earlier pilot without the decoy condition, kept for transparency.
 
 **Done during the sprint (13–15 November 2026):** the full model runs in `results/*.jsonl`;
-`src/robustness.py`; the `--complete-only` filter, the compact main-text table and the figure-legend change in
+`src/robustness.py`; the `--complete-only` and `--min-mass` filters, the compact main-text table and the figure-legend change in
 `src/analyze.py`; the extra table placeholders in `src/build_report.py`; all results, interpretation and the final
 write-up in `report/`. The first git commit (10 November) contains only the preexisting work; later commits
 contain the sprint work.
 
-**Status at submission:** six models are complete and reported (Qwen2.5 0.5B/1.5B/3B, Llama 3.2 1B/3B,
-Gemma 2 2B). Phi-3.5-mini, Qwen2.5 7B and Llama 3.1 8B were still running and are future work. To analyse only
-finished runs while others are in progress:
+**Status at submission:** seven models are complete and reported (Qwen2.5 0.5B/1.5B/3B/7B, Llama 3.2 1B/3B,
+Gemma 2 2B). Llama 3.1 8B was still running. Phi-3.5-mini finished but is excluded by the `--min-mass` filter
+(default 0.5) because it put on average only 0.16% of its next-token probability on the answer letters, so its
+letter distribution is not a valid read of its answer. To analyse only finished runs while others are in progress:
 
 ```bash
 python src/analyze.py --complete-only && python src/robustness.py --complete-only && python src/build_report.py
